@@ -18,7 +18,7 @@ export class WorkingTimingClimaService {
         return new Promise((resolve, reject) => {
             //console.log('estoy en start');
 
-            this.task = cron.schedule('*/30 * * * *', async () => {
+            this.task = cron.schedule('*/1 * * * *', async () => {
                 //var createOrUpdate used not 
                 const createOrUpdate = await this.createOrUpdateDoc();
                 
