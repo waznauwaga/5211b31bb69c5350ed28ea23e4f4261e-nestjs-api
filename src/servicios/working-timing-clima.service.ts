@@ -68,7 +68,7 @@ export class WorkingTimingClimaService {
             return new Promise(async (resolve,reject) =>{
                 
 
-                try{
+                
             
         let genericModel= {
             min:0 ,
@@ -111,11 +111,17 @@ export class WorkingTimingClimaService {
                 max: 0,
                 maxtime:0 
             };
+
             let response = await apiStation.get(null,query);
             console.log({RESPONSESTATUS:response,qury:query});
-            let idx = _.findIndex(response.data,(o:any)=>{
+
+            let idx =-1;
+            let error=new Array();
+            try{
+            idx= _.findIndex(response.data,(o:any)=>{
                 return moment(moment.unix(o.dateTime)).format('DD-MM-YYYY') === moment().format('DD-MM-YYYY');
             })
+        }catch(e){}
             //console.log({idxValue:idx,idxData:response.data[0]});
             if (idx > -1) {
                 
@@ -153,19 +159,23 @@ export class WorkingTimingClimaService {
                     model.barometro=Model;
                 }
       
+            }else{
+                error.push(1);
             }
            
             if(queries.length==contador){
-
-
-                climaMensual.push(model);
+                if(error.indexOf(1)==-1){
+                    climaMensual.push(model);
                  resolve(climaMensual);
+                }else{
+                    resolve(false);
+                }
+
+                
             }
 
         }
-    }catch(e){
-        resolve(false);
-    }
+
 
     })
 
