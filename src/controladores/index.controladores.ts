@@ -1,0 +1,1 @@
+export * from './clima/clima.controller';
