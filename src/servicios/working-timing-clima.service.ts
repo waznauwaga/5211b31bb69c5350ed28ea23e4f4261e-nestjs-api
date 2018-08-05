@@ -103,7 +103,7 @@ export class WorkingTimingClimaService {
                 maxtime:0 
             };
             let response = await apiStation.get(null,query);
-            //console.log({RESPONSESTATUS:response,qury:query});
+            console.log({RESPONSESTATUS:response,qury:query});
             let idx = _.findIndex(response.data,(o:any)=>{
                 return moment(moment.unix(o.dateTime)).format('DD-MM-YYYY') === moment().format('DD-MM-YYYY');
             })
