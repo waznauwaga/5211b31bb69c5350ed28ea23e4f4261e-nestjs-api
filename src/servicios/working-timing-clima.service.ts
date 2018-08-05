@@ -43,10 +43,17 @@ export class WorkingTimingClimaService {
         //console.log({docClima:docClima});
         if (docClima!=null) {
             let newClima= await this.asignDayClima(docClima.climaMensual);
+            if(newClima!=false){
             docClima.climaMensual=newClima;
             let newUpdate = await this.climaModel.updateOne({'fecha':moment().format('MM-YYYY') },docClima);
             //console.log({newUpdate:newUpdate});
             return {update:0};
+        }else{
+            console.log('no se pudo actualizar la base de datos');
+            return {update:0};
+
+        }
+            
         } else {
             let climaSave = new this.climaModel();
             climaSave.fecha = moment().format('MM-YYYY');
@@ -60,6 +67,8 @@ export class WorkingTimingClimaService {
     async asignDayClima(climaMensual:Array<any>): Promise<any> {
             return new Promise(async (resolve,reject) =>{
                 
+
+                try{
             
         let genericModel= {
             min:0 ,
@@ -154,7 +163,9 @@ export class WorkingTimingClimaService {
             }
 
         }
-
+    }catch(e){
+        resolve(false);
+    }
 
     })
 
