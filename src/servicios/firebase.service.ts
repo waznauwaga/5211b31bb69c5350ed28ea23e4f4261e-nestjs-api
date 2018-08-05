@@ -1,15 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import * as admin from 'firebase-admin'
-var serviceAccount = process.env.fireapikey;
-var databaseURL = process.env.urldatabasefire;
+//var serviceAccount = process.env.fireapikey;
+//var databaseURL = process.env.urldatabasefire;
 @Injectable()
 export class FirebaseService {
     
     constructor(){
-        admin.initializeApp({
+      /*  admin.initializeApp({
             credential:admin.credential.cert(serviceAccount),
             databaseURL:databaseURL
-        })
+        })*/
         
         
 
