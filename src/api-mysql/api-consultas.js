@@ -2,7 +2,7 @@ var Client = require('node-rest-client').Client;
 var client = new Client();
 var http = require('http');
 var _ = require('lodash');
-var api = process.env.apimysqlURL;//require('./api.json');
+var api = require('./api.json');
 
 
 var consultas ={
